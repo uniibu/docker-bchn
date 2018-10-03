@@ -1,20 +1,20 @@
-FROM debian:buster-slim
+FROM debian:stable-slim
 
 ENV HOME /bitcoincash
 
 ENV USER_ID 1000
 ENV GROUP_ID 1000
-ENV BCH_VERSION=1.10.0
+ENV BCH_VERSION=0.18.2
 
 RUN groupadd -g ${GROUP_ID} bitcoincash \
   && useradd -u ${USER_ID} -g bitcoincash -s /bin/bash -m -d /bitcoincash bitcoincash \
-  && apt-get update -y \
-  && apt-get install -y software-properties-common \
   && set -x \
-  && add-apt-repository ppa:bitcoin-abc/ppa \
-  && apt-get update -y && apt-get install -y --no-install-recommends \
-  curl gosu bitcoinabc \
-  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && apt-get update -y \
+  && apt-get install -y curl gosu
+
+RUN curl -O https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz \
+  && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin \
+  && rm *.tar.gz
 
 ADD ./bin /usr/local/bin
 RUN chmod +x /usr/local/bin/bch_oneshot
