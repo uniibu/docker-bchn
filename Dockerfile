@@ -8,6 +8,8 @@ ENV BCH_VERSION=1.10.0
 
 RUN groupadd -g ${GROUP_ID} bitcoincash \
   && useradd -u ${USER_ID} -g bitcoincash -s /bin/bash -m -d /bitcoincash bitcoincash \
+  && apt-get update -y \
+  && apt-get install -y software-properties-common \
   && set -x \
   && add-apt-repository ppa:bitcoin-abc/ppa \
   && apt-get update -y \
