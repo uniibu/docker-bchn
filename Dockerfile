@@ -10,7 +10,8 @@ RUN groupadd -g ${GROUP_ID} bitcoincash \
   && useradd -u ${USER_ID} -g bitcoincash -s /bin/bash -m -d /bitcoincash bitcoincash \
   && set -x \
   && apt-get update -y \
-  && apt-get install -y curl gosu
+  && apt-get install -y curl gosu \
+  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -O https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz \
   && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin \
