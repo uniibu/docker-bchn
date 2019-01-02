@@ -20,7 +20,7 @@ RUN curl -O https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${B
 ADD ./bin /usr/local/bin
 RUN chmod +x /usr/local/bin/bch_oneshot
 
-VOLUME [/bitcoincash]
+VOLUME ["/bitcoincash"]
 
 EXPOSE 8432 8433
 
@@ -28,6 +28,6 @@ WORKDIR /bitcoincash
 
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT [/usr/local/bin/entrypoint.sh]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD [bch_oneshot]
+CMD ["bch_oneshot"]
