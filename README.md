@@ -18,7 +18,7 @@ docker run -v bchd-data:/bitcoincash --name=bchd-node -d \
       -p 8433:8433 \
       -p 8432:8432 \
       -v /home/$USER/.bchdocker/bitcoin.conf:/bitcoincash/.bitcoin/bitcoin.conf \
-      unibtc/docker-bitcoincash
+      unibtc/docker-bitcoincash:0.18.5
 ```
 
 Check Logs
@@ -28,5 +28,5 @@ docker logs -f bchd-node
 
 Auto Installation
 ```
-sudo bash -c "$(curl -L https://git.io/fxIl0)"
+sudo bash -c "$(curl -L https://git.io/fh5Tj)" -- 0.18.5
 ```
