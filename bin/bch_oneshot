@@ -2,9 +2,6 @@
 
 set -ex
 
-# Generate bitcoin.conf
-echo "Installation Complete!"
-
 if [ $# -gt 0 ]; then
     args=("$@")
 fi

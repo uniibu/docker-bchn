@@ -4,10 +4,10 @@ ENV HOME /bitcoincash
 
 ENV USER_ID 1000
 ENV GROUP_ID 1000
-ENV BCH_VERSION=${VERSION}
+ENV BCH_VERSION=0.20.0
 
-RUN groupadd -g \${GROUP_ID} bitcoincash \
-  && useradd -u \${USER_ID} -g bitcoincash -s /bin/bash -m -d /bitcoincash bitcoincash \
+RUN groupadd -g ${GROUP_ID} bitcoincash \
+  && useradd -u ${USER_ID} -g bitcoincash -s /bin/bash -m -d /bitcoincash bitcoincash \
   && set -x \
   && apt-get update -y \
   && apt-get install -y curl gosu \
@@ -15,14 +15,14 @@ RUN groupadd -g \${GROUP_ID} bitcoincash \
 
 RUN set -ex \
   && cd /tmp \
-  && curl -O https://download.bitcoinabc.org/\${BCH_VERSION}/linux/bitcoin-abc-\${BCH_VERSION}-x86_64-linux-gnu.tar.gz \
+  && curl -O https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz \
   && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin --exclude=*-qt \
   && rm *.tar.gz
 
 ADD ./bin /usr/local/bin
 RUN chmod +x /usr/local/bin/bch_oneshot
 
-VOLUME [\"/bitcoincash\"]
+VOLUME ["/bitcoincash"]
 
 EXPOSE 8432 8433
 
@@ -30,6 +30,6 @@ WORKDIR /bitcoincash
 
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT [\"/usr/local/bin/entrypoint.sh\"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD [\"bch_oneshot\"]
+CMD ["bch_oneshot"]
