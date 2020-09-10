@@ -15,7 +15,7 @@ RUN groupadd -g ${GROUP_ID} bitcoincash \
 ARG version=0.21.6
 ENV BCH_VERSION=$version
 
-RUN curl -sL https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz | tar xz --strip=2 -C /usr/local/bin --exclude=*-qt\
+RUN curl -sL https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz | tar xz --strip=2 -C /usr/local/bin --exclude=*-qt
 
 
 ADD ./bin /usr/local/bin
