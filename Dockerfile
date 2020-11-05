@@ -12,10 +12,10 @@ RUN groupadd -g ${GROUP_ID} bitcoincash \
   && apt-get install -y curl gosu \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG version=0.21.6
+ARG version=22.1.0
 ENV BCH_VERSION=$version
 
-RUN curl -sL https://download.bitcoinabc.org/${BCH_VERSION}/linux/bitcoin-abc-${BCH_VERSION}-x86_64-linux-gnu.tar.gz | tar xz --strip=2 -C /usr/local/bin --exclude=*-qt
+RUN curl -sL https://github.com/bitcoin-cash-node/bitcoin-cash-node/releases/download/v${BCH_VERSION}/bitcoin-cash-node-${BCH_VERSION}-x86_64-linux-gnu.tar.gz | tar xz --strip-components=1 -C /usr/local --exclude=*-qt
 
 
 ADD ./bin /usr/local/bin

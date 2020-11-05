@@ -1,5 +1,5 @@
 # docker-bitcoincash
-Docker Image for Bitcoin Cash using Bitcoin-ABC Client
+Docker Image for Bitcoin Cash using BCHN Client. Cross compatible to Bitcoin ABC data before November 15 2020 fork. Installing after the fork, a full sync will be required.
 
 ### Quick Start
 Create a bchd-data volume to persist the bchd blockchain data, should exit immediately. The bchd-data container will store the blockchain when the node container is recreated (software upgrade, reboot, etc):
@@ -18,7 +18,7 @@ docker run -v bchd-data:/bitcoincash --name=bchd-node -d \
       -p 8433:8433 \
       -p 8432:8432 \
       -v /home/$USER/.bchdocker/bitcoin.conf:/bitcoincash/.bitcoin/bitcoin.conf \
-      unibtc/docker-bitcoincash:0.18.5
+      unibtc/docker-bchn:latest
 ```
 
 Check Logs
@@ -28,5 +28,5 @@ docker logs -f bchd-node
 
 Auto Installation
 ```
-sudo bash -c "$(curl -L https://git.io/fh5Tj)" -- 0.18.5
+sudo bash -c "$(curl -L https://git.io/JTp0u)" -- 22.1.0
 ```
